@@ -15,14 +15,15 @@
       "applicationUrl": "https://localhost:7018;http://localhost:5018",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DefaultConnection": "Server=94.73.170.33;Initial Catalog=u1429400_SExpens;User Id=u1429400_user278;Password=r:yg69A=.jB:4GK2"
+        "DefaultConnection":"Server=94.73.170.33;Initial Catalog=u1429400_SExpens;User Id=u1429400_user278;Password=r:yg69A=.jB:4GK2"
       }
     },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DefaultConnection":"Server=94.73.170.33;Initial Catalog=u1429400_SExpens;User Id=u1429400_user278;Password=r:yg69A=.jB:4GK2"
       }
     }
   }

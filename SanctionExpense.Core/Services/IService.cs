@@ -13,7 +13,7 @@ namespace SanctionExpense.Core.Services
         /// Tüm verileri döner.
         /// </summary>
         /// <returns></returns>
-        Task<IQueryable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync();
         /// <summary>
         /// Id parametresine göre veri döner.
         /// </summary>

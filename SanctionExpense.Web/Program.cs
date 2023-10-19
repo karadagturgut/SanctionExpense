@@ -1,7 +1,11 @@
+using SanctionExpense.Web.Extension;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.AddConnection();
+builder.RegisterServices();
 
 var app = builder.Build();
 

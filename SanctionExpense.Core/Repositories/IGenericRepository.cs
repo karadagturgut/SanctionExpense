@@ -9,7 +9,7 @@ namespace SanctionExpense.Core.Repositories
         /// Tüm verileri döner.
         /// </summary>
         /// <returns></returns>
-        Task<IQueryable<T>> GetAllAsync();
+        IQueryable<T> GetAllAsync();
         /// <summary>
         /// Id parametresine göre veri döner.
         /// </summary>
