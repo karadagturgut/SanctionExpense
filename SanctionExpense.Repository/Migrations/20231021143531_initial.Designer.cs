@@ -12,7 +12,7 @@ using SanctionExpense.Repository;
 namespace SanctionExpense.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231019213459_initial")]
+    [Migration("20231021143531_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace SanctionExpense.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
@@ -40,7 +43,15 @@ namespace SanctionExpense.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("IsApproved")
+                    b.Property<string>("Owner")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RejectReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
                     b.Property<DateTime>("UpdateDate")

@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.AddConnection();
 builder.RegisterServices();
+builder.AddMapper();
 
 var app = builder.Build();
 

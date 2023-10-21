@@ -2,22 +2,22 @@
 using SanctionExpense.Core.Repositories;
 using SanctionExpense.Core.Services;
 using SanctionExpense.Core.UnitOfWork;
-using SanctionExpense.Repository;
 using SanctionExpense.Repository.Repositories;
 using SanctionExpense.Repository.UnitOfWork;
-using SanctionExpense.Service;
+using SanctionExpense.Repository;
 using SanctionExpense.Service.Services.Mapping;
+using SanctionExpense.Service;
 using System.Reflection;
 
-namespace SanctionExpense.Web.Extension
+namespace SanctionExpense.API.Extension
 {
     public static class StartupExtension
     {
-        public static void AddConnection (this WebApplicationBuilder builder)
+        public static void AddConnection(this WebApplicationBuilder builder)
         {
             builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer("Server=94.73.170.33;Initial Catalog=u1429400_SExpens;User Id=u1429400_user278;Password=r:yg69A=.jB:4GK2",
-                options=>options.MigrationsAssembly(Assembly.GetAssembly(typeof(ApplicationDbContext)).GetName().Name
-                
+                options => options.MigrationsAssembly(Assembly.GetAssembly(typeof(ApplicationDbContext)).GetName().Name
+
                 )));
         }
 

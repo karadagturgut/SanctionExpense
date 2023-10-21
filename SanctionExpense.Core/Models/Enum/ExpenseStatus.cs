@@ -8,9 +8,9 @@ namespace SanctionExpense.Core.Models.Enum
 {
     public enum ExpenseStatus
     {
-        Awaiting = 0,
-        Rejected = 1,
-        Approved = 2
+        Rejected = 0,
+        Approved = 1,
+        Awaiting = 2
 
     }
 }

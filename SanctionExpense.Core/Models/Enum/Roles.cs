@@ -8,7 +8,7 @@ namespace SanctionExpense.Core.Models.Enum
 {
     public enum Roles
     {
-        Admin = 0,
-        User = 1,
+        Accountant = 0,
+        Employee = 1,
     }
 }
