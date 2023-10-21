@@ -26,7 +26,7 @@ namespace SanctionExpense.Core.Services
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        IQueryable<T> Where(Expression<Func<T, bool>> expression);
+       Task <IQueryable<T>> Where(Expression<Func<T, bool>> expression);
 
         /// <summary>
         /// Expression ifadesine göre veri kontrolü yapar.

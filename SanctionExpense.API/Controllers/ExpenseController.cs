@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using SanctionExpense.Core.Models;
+using SanctionExpense.Core.Models.DTO;
 using SanctionExpense.Core.Models.Enum;
 using SanctionExpense.Core.Services;
 using System.Runtime.CompilerServices;
@@ -11,69 +14,60 @@ namespace SanctionExpense.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExpenseController : ControllerBase
+    public class ExpenseController : CustomBaseController
     {
+        #region ctor - initializing
         private readonly IExpenseService _expenseService;
-        public ExpenseController(IExpenseService expenseService)
+        private readonly IMapper _mapper;
+        public ExpenseController(IExpenseService expenseService, IMapper mapper)
         {
             _expenseService = expenseService;
+            _mapper = mapper;
         }
+        #endregion
 
-
+        #region GetAllExpenses
 
         /// <summary>
         /// Tüm masraf listesini getirir.
         /// </summary>
-        /// <returns></returns>
-        // GET: api/<ExpenseController>
-
-        
-        [Authorize (Roles = nameof(Roles.Accountant))]
-        [HttpGet]
-        public async Task<IEnumerable<Expense>> GetAllExpenses()
+        /// <returns></returns>        
+        [Authorize(Roles = nameof(Roles.Accountant))]
+        [HttpGet("GetAllExpenses")]
+        public async Task<IActionResult> GetAllExpenses()
         {
-            return await _expenseService.GetAllAsync();
+            var getList = await _expenseService.GetAwaitingRequest();
+            var listDTO = _mapper.Map<List<ExpenseDTO>>(getList).ToList();
+            return CreateResponse(CustomResponseDTO<List<ExpenseDTO>>.Success(200,listDTO));
         }
+        #endregion
 
+        #region GetById
         /// <summary>
         /// Tek bir masrafı getiren endpoint.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         /// 
+
         [HttpGet("{id}")]
-        public async Task<Expense> GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return await _expenseService.GetByIdAsync(id);
+            var expense= await _expenseService.GetByIdAsync(id);
+            var expenseDTO = _mapper.Map<ExpenseDTO>(expense);
+            return CreateResponse(CustomResponseDTO<ExpenseDTO>.Success(200, expenseDTO));
         }
+        #endregion
 
-        
-        [HttpPost]
+        #region Add
+
+        [HttpPost("Add")]
         // expense add dto gibi bi isimli bir nesne ile ekleme yapalım. bazı alanlar zorunlu değil ama swagger'da görünüyor.
-        public  void Post(Expense request)
+        public async Task<IActionResult> Add(Expense request)
         {
-            _expenseService.AddAsync(request);
-       
+            await _expenseService.AddAsync(request);
+            return Ok();
         }
-
-        // PUT api/<ExpenseController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ExpenseController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-
-        [HttpPatch]
-        public async Task<bool> UpdateStatus(int id)
-        {
-            //var updateStatus = _
-
-            return true;
-        }
+        #endregion
     }
 }

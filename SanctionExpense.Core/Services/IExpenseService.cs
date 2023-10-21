@@ -9,5 +9,7 @@ namespace SanctionExpense.Core.Services
 {
     public interface IExpenseService : IService<Expense>
     {
+        Task<IQueryable<Expense>> GetAwaitingRequest();
+
     }
 }

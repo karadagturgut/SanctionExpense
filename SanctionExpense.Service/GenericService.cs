@@ -13,8 +13,8 @@ namespace SanctionExpense.Service
 {
     public class GenericService<T> : IService<T> where T : class
     {
-       private readonly IUnitOfWork _unitOfWork;
-       private readonly IGenericRepository<T> _genericRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IGenericRepository<T> _genericRepository;
         public GenericService(IUnitOfWork unitOfWork, IGenericRepository<T> genericRepository)
         {
             _unitOfWork = unitOfWork;
@@ -23,15 +23,14 @@ namespace SanctionExpense.Service
 
         public async Task AddAsync(T entity)
         {
-           await _genericRepository.AddAsync(entity);
-           await _unitOfWork.SaveAsync();
-
+            await _genericRepository.AddAsync(entity);
+            await _unitOfWork.SaveAsync();
         }
 
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
             return await _genericRepository.AnyAsync(expression);
-           
+
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -50,9 +49,9 @@ namespace SanctionExpense.Service
             await _unitOfWork.SaveAsync();
         }
 
-        public  IQueryable<T> Where(Expression<Func<T, bool>> expression)
+        public async Task<IQueryable<T>> Where(Expression<Func<T, bool>> expression)
         {
-            return _genericRepository.Where(expression);
+            return await _genericRepository.Where(expression);
         }
     }
 }
