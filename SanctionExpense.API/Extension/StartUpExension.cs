@@ -8,6 +8,7 @@ using SanctionExpense.Repository;
 using SanctionExpense.Service.Services.Mapping;
 using SanctionExpense.Service;
 using System.Reflection;
+using SanctionExpense.Service.Services;
 
 namespace SanctionExpense.API.Extension
 {
@@ -25,7 +26,9 @@ namespace SanctionExpense.API.Extension
         {
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
             builder.Services.AddScoped(typeof(IService<>), typeof(GenericService<>));
+            builder.Services.AddScoped<IExpenseService, ExpenseService>();
         }
 
 

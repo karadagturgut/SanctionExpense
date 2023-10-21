@@ -49,6 +49,7 @@ namespace SanctionExpense.API.Controllers
 
         
         [HttpPost]
+        // expense add dto gibi bi isimli bir nesne ile ekleme yapalım. bazı alanlar zorunlu değil ama swagger'da görünüyor.
         public  void Post(Expense request)
         {
             _expenseService.AddAsync(request);
