@@ -69,5 +69,22 @@ namespace SanctionExpense.API.Controllers
             return Ok();
         }
         #endregion
+
+        #region Update
+        /// <summary>
+        /// ExpenseDTO nesnesi alarak güncelleme yapan endpoint. 
+        /// Yeterli vakit bulabilirsem Patch metodu ile burasını ayırmak istiyorum.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update(Expense dto)
+        {
+            await _expenseService.UpdateAsync(dto);
+            return Ok();
+        }
+
+        #endregion
     }
 }

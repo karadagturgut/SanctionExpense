@@ -18,7 +18,6 @@ namespace SanctionExpense.Caching
     public class ExtenseServiceCache : IExpenseService
     {
         #region Key List
-        private const string AwaitingExpensesKey = "AwaitingExpensesKey";
         private const string AllExpensesKey = "AllExpensesKey";
         #endregion
 
@@ -35,11 +34,6 @@ namespace SanctionExpense.Caching
             _cache = cache;
             _mapper = mapper;
 
-            if (!_cache.TryGetValue(AwaitingExpensesKey, out _))
-            {
-                _cache.Set(AwaitingExpensesKey, _expenseRepository.Where(x=>x.Status.Equals(ExpenseStatus.Awaiting)));
-            }
-
             if (!_cache.TryGetValue(AllExpensesKey, out _))
             {
                 _cache.Set(AllExpensesKey, _expenseRepository.GetAllAsync().ToList());
@@ -52,10 +46,16 @@ namespace SanctionExpense.Caching
         {
             await _expenseRepository.AddAsync(entity);
             await _unitOfWork.SaveAsync();
-            await CachingAllKeys();
+            await CachingAllKeysAsync();
              
         }
 
+        public async Task AddRange(IEnumerable<Expense> entities)
+        {
+            await _expenseRepository.AddRange(entities);
+            await _unitOfWork.SaveAsync();
+            await CachingAllKeysAsync();
+        }
         public Task<bool> AnyAsync(Expression<Func<Expense, bool>> expression)
         {
             throw new NotImplementedException();
@@ -68,7 +68,8 @@ namespace SanctionExpense.Caching
 
         public Task<IQueryable<Expense>> GetAwaitingRequest()
         {
-            return _cache.Get<List<Expense>>(AllExpensesKey).Where(x => x.Status.Equals(ExpenseStatus.Awaiting));
+            throw new NotImplementedException();
+
         }
 
         public Task<Expense> GetByIdAsync(int id)
@@ -86,10 +87,11 @@ namespace SanctionExpense.Caching
             throw new NotImplementedException();
         }
 
-        public async Task CachingAllKeys()
+        public async Task CachingAllKeysAsync()
         {
             _cache.Set(AllExpensesKey, await _expenseRepository.GetAllAsync().ToListAsync());
-            _cache.Set(AwaitingExpensesKey, _expenseRepository.Where(x => x.Status.Equals(ExpenseStatus.Awaiting)));
         }
+
+      
     }
 }

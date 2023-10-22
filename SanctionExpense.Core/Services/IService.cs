@@ -42,6 +42,8 @@ namespace SanctionExpense.Core.Services
         /// <returns></returns>
         Task AddAsync(T entity);
 
+        Task AddRange(IEnumerable<T> entities);
+
         /// <summary>
         /// Güncelleme.
         /// </summary>

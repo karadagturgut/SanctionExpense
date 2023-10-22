@@ -27,6 +27,12 @@ namespace SanctionExpense.Service
             await _unitOfWork.SaveAsync();
         }
 
+        public async Task AddRange(IEnumerable<T> entities)
+        {
+            await _genericRepository.AddRange(entities);
+            await _unitOfWork.SaveAsync();
+        }
+
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
             return await _genericRepository.AnyAsync(expression);
