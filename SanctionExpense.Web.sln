@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionExpense.Web", "SanctionExpense.Web\SanctionExpense.Web.csproj", "{90323920-8948-491A-B35B-2BA7F2DEBF34}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionExpense.Core", "SanctionExpense.Core\SanctionExpense.Core.csproj", "{15EFE371-DB34-4704-B87C-BE0DC68BC2CF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionExpense.Repository", "SanctionExpense.Repository\SanctionExpense.Repository.csproj", "{CA2BA002-311C-4856-8286-9E325B7E5566}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionExpense.Service", "SanctionExpense.Service\SanctionExpense.Service.csproj", "{57F07183-8054-40D4-881C-8572B53FE658}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionExpense.API", "SanctionExpense.API\SanctionExpense.API.csproj", "{D2ECD687-30D2-4076-B06C-AEB16B41F745}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionExpense.API", "SanctionExpense.API\SanctionExpense.API.csproj", "{D2ECD687-30D2-4076-B06C-AEB16B41F745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionExpense.Caching", "SanctionExpense.Caching\SanctionExpense.Caching.csproj", "{3B6C1056-A6AE-47BA-9F2A-069250F7942B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionExpense.Web", "SanctionExpense.Web\SanctionExpense.Web.csproj", "{215A6A6A-1F09-4D9E-B8F5-88FA8584746B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{90323920-8948-491A-B35B-2BA7F2DEBF34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90323920-8948-491A-B35B-2BA7F2DEBF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90323920-8948-491A-B35B-2BA7F2DEBF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90323920-8948-491A-B35B-2BA7F2DEBF34}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15EFE371-DB34-4704-B87C-BE0DC68BC2CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15EFE371-DB34-4704-B87C-BE0DC68BC2CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15EFE371-DB34-4704-B87C-BE0DC68BC2CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,10 +35,10 @@ Global
 		{D2ECD687-30D2-4076-B06C-AEB16B41F745}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2ECD687-30D2-4076-B06C-AEB16B41F745}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2ECD687-30D2-4076-B06C-AEB16B41F745}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B6C1056-A6AE-47BA-9F2A-069250F7942B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B6C1056-A6AE-47BA-9F2A-069250F7942B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B6C1056-A6AE-47BA-9F2A-069250F7942B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B6C1056-A6AE-47BA-9F2A-069250F7942B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{215A6A6A-1F09-4D9E-B8F5-88FA8584746B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{215A6A6A-1F09-4D9E-B8F5-88FA8584746B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{215A6A6A-1F09-4D9E-B8F5-88FA8584746B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{215A6A6A-1F09-4D9E-B8F5-88FA8584746B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

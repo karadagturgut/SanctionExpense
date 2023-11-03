@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SanctionExpense.Core.Models.Enum
 {
-    public enum Roles
+    public static class Roles
     {
-        Accountant = 0,
-        Employee = 1,
+        public const string Accountant = "Accountant";
+        public const string Executive = "Executive";
+        public const string Employee = "Employee";
     }
 }
