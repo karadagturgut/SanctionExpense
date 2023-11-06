@@ -6,6 +6,7 @@ using SanctionExpense.Repository.UnitOfWork;
 using SanctionExpense.Service.Services.Mapping;
 using SanctionExpense.Service.Services;
 using SanctionExpense.Service;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace SanctionExpense.Web.Extensions
 {
@@ -18,6 +19,7 @@ namespace SanctionExpense.Web.Extensions
             builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
             builder.Services.AddScoped(typeof(IService<>), typeof(GenericService<>));
             builder.Services.AddScoped<IExpenseService, ExpenseService>();
+            
         }
 
 

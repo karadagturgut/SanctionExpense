@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SanctionExpense.Core.Models;
 using SanctionExpense.Core.Models.DTO;
+using SanctionExpense.Core.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace SanctionExpense.Service.Services.Mapping
         {
             CreateMap<Expense,ExpenseDTO>().ReverseMap();
             CreateMap<ExpenseDTO,Expense>();
+
+            CreateMap<Expense,ExpenseViewModel>().ReverseMap();
+            CreateMap<ExpenseViewModel, Expense>();
         }
         
     }

@@ -1,0 +1,116 @@
+﻿@model SanctionExpense.Core.Models.ViewModel.ExpenseViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KDV Hesaplama</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
+    <!-- Optional Bootstrap theme -->
+</head>
+<body>
+    <div>
+        <h2>Teklif</h2>
+        <button type="button" class="Satirekle btn-success">Satır Ekle</button>
+        <form asp-controller="Home" asp-action="Index" r method="post" enctype="multipart/form-data">
+            <table id="Tablom">
+                <tr>
+                    <th></th>
+                    <th>Masraf Açıklaması</th>
+                    <th>Masraf Tarihi</th>
+                    <th>Masraf Fiyat</th>
+                    <th>İşlem</th>
+                </tr>
+                <tr class="satir">
+                    <td>1</td>
+                    <td>
+                        <input asp-for="Description" 
+                               type="text"
+                               class="form-control"
+                               value="" />
+                    </td>
+                    <td>
+                        <input type="date"
+                               asp-for="ExpenseDate"
+                               class="form-control" />
+                    </td>
+                    <td>
+                        <input type="number" min="0.01" step="0.01"
+                               asp-for="Amount"
+                               class="price priceCalc form-control"
+                               value="0" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <table id="Tablom2">
+                <tr>
+                    <td>Toplam Masraf: <br /></td>
+                    <td>
+                        <input name="totalPrice"
+                               id="totalPrice"
+                               readonly="readonly"
+                               name="totalPrice"
+                               class="form-control"
+                               type="text"
+                               value="0.00" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <input type="submit" value="Kaydet" />
+            <input type="reset" value="Yenile" />
+        </form>
+    </div>
+    <script src="~/js/jquery-3.1.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script>
+        // main function when page is opened
+        $(document).ready(function () {
+          // function for adding a new row
+          var sayac = 1;
+          $(".Satirekle").click(function () {
+            sayac++;
+            $("#Tablom").append(
+              '<tr id="row' +
+                sayac +
+                '" class="satir"><td>' +
+                sayac +
+                '</td><td><input type="text" name="description"class="form-control" value=""/></td>'+
+                '<td><input type="date" name="date" class="form-control" value=""/></td>'+
+                '<td><input type="number" min="0.01" step="0.01" name="price" class="price priceCalc form-control" value="0"/></td>'+
+                '<td><button type="button" name="remove" id="' +
+                sayac +
+                '" class="btn_remove btn-danger">X</button></td></tr>'
+            );
+          });
+          // remove row when X is clicked
+          $(document).on("click", ".btn_remove", function () {
+            var button_id = $(this).attr("id");
+            $("#row" + button_id + "").remove();
+            calcAll();
+          });
+          // calculate everything
+          $(document).on("keyup", ".priceCalc", calcAll); //
+          $(".priceCalc").on("change", calcAll);
+        });
+        function calcAll() {
+          // calculate total for one row
+          $(".satir").each(function () {
+
+          });
+          var totalPrice = 0;
+          $(".price").each(function () {
+            if (!isNaN(this.value) && this.value.length != 0) {
+              totalPrice += parseFloat(this.value);
+            }
+          });
+          $("#totalPrice").val(totalPrice.toFixed(2));
+        }
+    </script>
+</body>
+</html>

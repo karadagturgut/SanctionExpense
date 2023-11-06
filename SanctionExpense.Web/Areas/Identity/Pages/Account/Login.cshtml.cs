@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using SanctionExpense.Core.Models.Enum;
 
 namespace SanctionExpense.Web.Areas.Identity.Pages.Account
 {
@@ -21,11 +22,15 @@ namespace SanctionExpense.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -112,8 +117,12 @@ namespace SanctionExpense.Web.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+               
+
+
                 if (result.Succeeded)
                 {
+                    returnUrl =  await GetReturnUrl();
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
@@ -135,6 +144,30 @@ namespace SanctionExpense.Web.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private async Task<string> GetReturnUrl()
+        {
+            var loggedUser = await _userManager.FindByEmailAsync(Input.Email);
+            var roleUser = await _userManager.GetRolesAsync(loggedUser);
+            var role = roleUser.FirstOrDefault() ?? string.Empty;
+            var returnUrl = string.Empty;
+
+            switch (role)
+            {
+                case "Executive":
+                    returnUrl = "~/Executive/Home/Index";
+                    break;
+                case "Employee":
+                    returnUrl = "~/Employee/Home/Index";
+                    break;
+                case "Accountant":
+                    returnUrl = "~/Accountant/Home/Index";
+                    break;
+                default:
+                    break;
+            }
+            return returnUrl;
         }
     }
 }
