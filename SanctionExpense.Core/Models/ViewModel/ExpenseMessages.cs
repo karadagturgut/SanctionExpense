@@ -41,6 +41,8 @@ namespace SanctionExpense.Core.Models.ViewModel
         /// Talep olumsuz ise reddedilme nedeni.
         /// </summary>
         public string RejectReason { get; set; }
+
+        public bool? returnStatus { get; set; }
     }
     public class ExpenseResponseModel
     {

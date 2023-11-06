@@ -21,9 +21,10 @@ namespace SanctionExpense.Repository.UnitOfWork
             _context.SaveChanges();
         }
 
-        public async Task SaveAsync()
+        public async Task<bool> SaveAsync()
         {
-           await _context.SaveChangesAsync();
+         var status =  await _context.SaveChangesAsync() > 0;
+            return status;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SanctionExpense.Core.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        Task SaveAsync();
+        Task<bool> SaveAsync();
         void Save();
     }
 }

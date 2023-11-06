@@ -40,7 +40,7 @@ namespace SanctionExpense.Core.Services
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task AddAsync(T entity);
+        Task<bool> AddAsync(T entity);
 
         Task AddRange(IEnumerable<T> entities);
 

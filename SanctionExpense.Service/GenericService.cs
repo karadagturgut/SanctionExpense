@@ -21,10 +21,11 @@ namespace SanctionExpense.Service
             _genericRepository = genericRepository;
         }
 
-        public async Task AddAsync(T entity)
+        public async Task<bool> AddAsync(T entity)
         {
             await _genericRepository.AddAsync(entity);
-            await _unitOfWork.SaveAsync();
+            var success = await _unitOfWork.SaveAsync();
+            return success;
         }
 
         public async Task AddRange(IEnumerable<T> entities)

@@ -36,7 +36,7 @@ namespace SanctionExpense.Core.Models
         /// <summary>
         /// Talep olumsuz ise reddedilme nedeni.
         /// </summary>
-        public string RejectReason { get; set; }
+        public string? RejectReason { get; set; }
 
 
 
